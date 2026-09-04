@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Путь казака — 2D pixel platformer | Гойда</title>
+<meta name="description" content="«Путь казака» — пиксельный 2D-платформер о взаимодействии казаков и черкесов, разработанный командой студии «Гойда» при АГУ.">
+<link rel="stylesheet" href="../style.css">
+<style>
+  body{ background:#0a0a0a; }
+
+  /* Фоновый блок с видео */
+  .cossack-hero {
+    position: relative;
+    overflow: hidden;
+    min-height: 90svh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-top: 8rem;
+    padding-bottom: 3rem;
+  }
+
+  .hero-video-bg {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    overflow: hidden;
+  }
+  .hero-video-bg video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.72;
+    filter: contrast(1.08) saturate(.75);
+  }
+  .hero-video-bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.48);
+  }
+
+  /* Контент поверх */
+  .cossack-hero .wrap {
+    position: relative;
+    z-index: 2;
+  }
+
+  .genre-tag {
+    display: inline-block;
+    border: 1px solid #ffffff40;
+    border-radius: 100px;
+    padding: .4em 1em;
+    font-size: .85rem;
+    margin-bottom: 1.4rem;
+  }
+  .status-tag {
+    color: #7fe08a;
+  }
+</style>
+</head>
+<body>
+
+<div data-site-header></div>
+
+<section class="cossack-hero wrap">
+  <!-- Фоновое видео -->
+  <div class="hero-video-bg">
+    <video autoplay muted loop playsinline>
+      <source src="../video/twoc.mp4" type="video/mp4">
+      <!-- fallback, если видео не загрузится -->
+    </video>
+  </div>
+
+  <div class="wrap">
+    <div class="breadcrumb"><a href="../index.html">Гойда</a> / <a href="../games.html">Игры</a> / Путь казака</div>
+    <span class="genre-tag">2D pixel platformer</span>
+    <h1 class="reveal" style="font-family:var(--display); font-size:clamp(2.6rem,9vw,7rem);">Путь казака</h1>
+    <p class="lede mt-lg" style="max-width:56ch;">Пиксельный 2D-платформер с проработанным сюжетом о взаимодействии и быте казаков и черкесов, поднимающий вопросы морали и традиционных ценностей.</p>
+  </div>
+</section>
+
+<!-- Остальная часть страницы без изменений -->
+<section class="wrap">
+  <div class="about-grid">
+    <div class="reveal">
+      <h2 class="section-title">О проекте</h2>
+      <p class="lede" style="max-width:60ch; margin-top:1.4rem; color:var(--paper);">
+        «Путь казака» — иммерсивная образовательная видеоигра, которую разрабатывает студенческая команда при Адыгейском государственном университете. Разработчики рассматривают игровую индустрию как инструмент популяризации отечественной культуры и истории, а сюжет игры исследует взаимодействие казаков и черкесов, их быт, мораль и традиционные ценности.
+      </p>
+    </div>
+    <div class="about-facts reveal">
+      <div class="about-fact"><b>Жанр</b><span>2D pixel platformer</span></div>
+      <div class="about-fact"><b>Статус</b><span class="status-tag">В разработке</span></div>
+      <div class="about-fact"><b>Тема</b><span>Историко-культурное взаимодействие казаков и черкесов</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="section-head">
+    <h2 class="section-title">История разработки</h2>
+  </div>
+  <div class="timeline">
+    <div class="timeline-item reveal">
+      <b>Зима 2025</b>
+      <h4>Начало разработки</h4>
+      <p>Команда начинает работу над игрой «Путь казака».</p>
+    </div>
+    <div class="timeline-item reveal">
+      <b>Сентябрь 2025</b>
+      <h4>Победа в конкурсе СНИКов АГУ</h4>
+      <p>Проект побеждает в конкурсе студенческих научно-исследовательских коллективов АГУ в рамках программы «Приоритет 2030» и получает грант 170 000 ₽ на разработку.</p>
+    </div>
+    <div class="timeline-item reveal">
+      <b>Январь 2026</b>
+      <h4>Отбор во Всероссийскую школу казачьих стартап-проектов</h4>
+      <p>Команда проходит отбор в школу, организованную Южным федеральным университетом при поддержке Росмолодёжь.Гранты.</p>
+    </div>
+    <div class="timeline-item reveal">
+      <b>2026</b>
+      <h4>Первое место и менторское сопровождение</h4>
+      <p>Команда проходит обучение, представляет проект на конференции, защищает его и занимает первое место среди команд из шести регионов России, получив месяц менторского сопровождения.</p>
+    </div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="section-head">
+    <h2 class="section-title">Команда</h2>
+  </div>
+  <div class="team-grid">
+    <div class="team-card reveal"><span class="role">Программист / геймдизайнер</span><h4>Владислав Вощетинский</h4></div>
+    <div class="team-card reveal"><span class="role">Программист / геймдизайнер</span><h4>Денис Шулик</h4></div>
+    <div class="team-card reveal"><span class="role">Художник</span><h4>Мария Коваленко</h4></div>
+    <div class="team-card reveal"><span class="role">Художник</span><h4>Раиса Турченюк</h4></div>
+    <div class="team-card reveal"><span class="role">Художник</span><h4>Джанета Сиюхова</h4></div>
+  </div>
+</section>
+
+<section class="wrap">
+  <div class="cta-block" style="grid-template-columns:1fr;">
+    <div>
+      <h2>Хотите обсудить свой цифровой продукт?</h2>
+      <p class="lede">Мы делаем не только игры — сайты, айдентику и рекламу для бизнеса тоже.</p>
+      <a href="../index.html#contact" class="btn mt-lg" style="background:#fff; color:var(--red);">Обсудить проект</a>
+    </div>
+  </div>
+</section>
+
+<div data-site-footer></div>
+
+<script src="../components.js"></script>
+<script src="../script.js"></script>
+</body>
+</html>
