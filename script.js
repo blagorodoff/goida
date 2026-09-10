@@ -14,13 +14,16 @@ document.addEventListener('DOMContentLoaded', () => {
   const mobileMenu = document.querySelector('.mobile-menu');
   if (burger && mobileMenu){
     burger.addEventListener('click', () => {
-      burger.classList.toggle('open');
-      mobileMenu.classList.toggle('open');
-      document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
+      const isOpen = !burger.classList.contains('open');
+      burger.classList.toggle('open', isOpen);
+      mobileMenu.classList.toggle('open', isOpen);
+      burger.setAttribute('aria-expanded', String(isOpen));
+      document.body.style.overflow = isOpen ? 'hidden' : '';
     });
     mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
       burger.classList.remove('open');
       mobileMenu.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
     }));
   }
@@ -66,16 +69,75 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  /* contact form: local demo submit (no backend wired) */
-  const ctaForm = document.querySelector('.cta-form');
-  if (ctaForm){
-    ctaForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      const btn = ctaForm.querySelector('button[type="submit"]');
-      const original = btn.textContent;
-      btn.textContent = 'Заявка отправлена';
-      ctaForm.reset();
-      setTimeout(() => { btn.textContent = original; }, 2600);
+
+  /* interactive web-focus stages */
+  document.querySelectorAll('.focus-steps.interactive').forEach(group => {
+    const steps = [...group.querySelectorAll('.focus-step.interactive')];
+    const detail = group.parentElement.querySelector('.focus-detail');
+    if (!detail || !steps.length) return;
+    const kicker = detail.querySelector('.detail-kicker');
+    const title = detail.querySelector('strong');
+    const copy = detail.querySelector(':scope > div > span:last-child');
+    const activate = (step) => {
+      steps.forEach(s => s.classList.toggle('is-active', s === step));
+      if (kicker) kicker.textContent = `Активный этап · ${steps.indexOf(step) + 1}`;
+      if (title) title.textContent = step.dataset.focusTitle || '';
+      if (copy) copy.textContent = step.dataset.focusCopy || '';
+    };
+    steps.forEach(step => {
+      step.addEventListener('mouseenter', () => activate(step));
+      step.addEventListener('focus', () => activate(step));
+      step.addEventListener('click', () => activate(step));
     });
-  }
+  });
+
+  /* why-chain: node -> detail panel */
+  document.querySelectorAll('.why-chain-wrap').forEach(wrap => {
+    const nodes = [...wrap.querySelectorAll('.why-node')];
+    const detail = wrap.querySelector('.why-detail');
+    if (!detail || !nodes.length) return;
+    const kicker = detail.querySelector('.detail-kicker');
+    const title = detail.querySelector('h3');
+    const copy = detail.querySelector('p');
+    const arrow = detail.querySelector('.detail-arrow');
+    const activate = (node) => {
+      const i = nodes.indexOf(node);
+      nodes.forEach(n => n.classList.toggle('is-active', n === node));
+      if (kicker) kicker.textContent = `Шаг цепочки · ${String(i + 1).padStart(2,'0')}`;
+      if (title) title.textContent = node.dataset.whyTitle || '';
+      if (copy) copy.textContent = node.dataset.whyCopy || '';
+      if (arrow) arrow.textContent = `${String(i + 1).padStart(2,'0')} → 06`;
+    };
+    nodes.forEach(node => {
+      node.addEventListener('mouseenter', () => activate(node));
+      node.addEventListener('focus', () => activate(node));
+      node.addEventListener('click', () => activate(node));
+    });
+  });
+
+
+  /* works: local cover photos + swipe progress */
+  document.querySelectorAll('.work-photo').forEach(img => {
+    img.addEventListener('error', () => img.remove(), { once: true });
+  });
+  document.querySelectorAll('.works-section').forEach(section => {
+    const scroller = section.querySelector('.works-scroller');
+    const guide = section.querySelector('.works-guide');
+    const hint = section.querySelector('.works-mobile-hint');
+    if (!scroller) return;
+    const updateWorksProgress = () => {
+      const max = scroller.scrollWidth - scroller.clientWidth;
+      const ratio = max > 0 ? scroller.scrollLeft / max : 0;
+      if (guide) {
+        const current = Math.min(3, Math.max(1, Math.round(ratio * 2) + 1));
+        const total = 3;
+        const text = guide.querySelector('span:last-child');
+        if (text) text.textContent = `${String(current).padStart(2, '0')} / ${String(total).padStart(2, '0')}`;
+      }
+      if (hint) hint.classList.toggle('is-done', ratio > 0.04);
+    };
+    scroller.addEventListener('scroll', updateWorksProgress, { passive: true });
+    window.addEventListener('resize', updateWorksProgress, { passive: true });
+    updateWorksProgress();
+  });
 });
