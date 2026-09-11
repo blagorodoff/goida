@@ -9,7 +9,6 @@
   font-family: "ST-Cyberillic";
   src: url("fonts/ST-Cyberillic.otf") format("opentype");
   font-style: normal;
-  font-weight: 400;
   font-display: swap;
 }
 
@@ -108,7 +107,7 @@ h2,
 h3,
 h4 {
   font-family: var(--text);
-  font-weight: 800;
+  font-weight: normal;
   line-height: 1.02;
   letter-spacing: -0.01em;
   margin: 0;
@@ -334,6 +333,48 @@ body.theme-light .site-header.is-scrolled {
   }
 }
 
+/* ---------- ornamental section dividers ---------- */
+section {
+  position: relative;
+}
+
+section + section::before,
+section + section::after,
+footer::before,
+footer::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  height: clamp(2.35rem, 3.8vw, 3.8rem);
+  width: 52%;
+  max-width: 52%;
+  background-image: url("img/ornament.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  background-position: center;
+  pointer-events: none;
+}
+
+section + section::before,
+footer::before {
+  left: 0;
+  top: 0;
+}
+
+section + section::after,
+footer::after {
+  right: 0;
+  top: 1rem;
+  transform: scaleX(-1);
+  transform-origin: center;
+}
+
+section + section > *,
+footer > * {
+  position: relative;
+  z-index: 1;
+}
+
 /* ---------- hero ---------- */
 /* hero – теперь сетка */
 .hero {
@@ -343,7 +384,6 @@ body.theme-light .site-header.is-scrolled {
   justify-content: flex-end;
   padding-top: 8rem;
   padding-bottom: 3rem;
-  border-bottom: 1px solid var(--grey-line);
   position: relative;
 }
 
@@ -378,7 +418,7 @@ body.theme-light .site-header.is-scrolled {
 }
 
 .hero h1 {
-  font-size: clamp(2.6rem, 8vw, 6.6rem);
+  font-size: clamp(2.6rem, 7vw, 9rem);
   max-width: 15ch;
   margin: 0;
 }
@@ -492,13 +532,35 @@ body.theme-light .rule {
 }
 .about-grid p.lede {
   max-width: none;
-  font-size: clamp(1.3rem, 2.6vw, 1.9rem);
+  font-size: clamp(2.3rem, 2.6vw, 2.9rem);
   color: var(--paper);
   font-family: var(--display);
   font-weight: 700;
   line-height: 1.25;
 }
 body.theme-light .about-grid p.lede {
+  color: var(--black);
+}
+
+.home-about-copy p.lede {
+  font-family: var(--text);
+  font-weight: 500;
+  font-size: clamp(1.08rem, 1.75vw, 1.34rem);
+  line-height: 1.58;
+  color: var(--paper);
+}
+body.theme-light .home-about-copy p.lede {
+  color: var(--black);
+}
+
+.game-page .about-grid .game-about-description {
+  font-family: var(--text);
+  font-weight: 400;
+  font-size: 1.5rem;
+  line-height: 1.65;
+  color: var(--paper);
+}
+body.theme-light .game-page .game-about-description {
   color: var(--black);
 }
 .about-facts {
@@ -525,10 +587,7 @@ body.theme-light .about-grid p.lede {
 
 /* services */
 .services {
-  border-top: 1px solid var(--grey-line);
-}
-body.theme-light .services {
-  border-color: var(--grey-line-light);
+  position: relative;
 }
 .service-row {
   display: grid;
@@ -788,8 +847,6 @@ body.theme-light .process-item {
 /* games teaser */
 .games-teaser {
   background: linear-gradient(180deg, var(--black), #1a0605 60%, var(--black));
-  border-top: 1px solid var(--grey-line);
-  border-bottom: 1px solid var(--grey-line);
   position: relative;
   overflow: hidden;
 }
@@ -909,6 +966,7 @@ body.theme-light .process-item {
 
 /* footer */
 footer {
+  position: relative;
   padding: 3rem var(--edge) 2rem;
   display: flex;
   justify-content: space-between;
@@ -917,10 +975,6 @@ footer {
   gap: 1.5rem;
   color: var(--grey);
   font-size: 0.9rem;
-  border-top: 1px solid var(--grey-line);
-}
-body.theme-light footer {
-  border-color: var(--grey-line-light);
 }
 footer .foot-links {
   display: flex;
@@ -944,10 +998,6 @@ footer .foot-links {
 .page-hero {
   padding-top: 9rem;
   padding-bottom: 3rem;
-  border-bottom: 1px solid var(--grey-line);
-}
-body.theme-light .page-hero {
-  border-color: var(--grey-line-light);
 }
 .page-hero .eyebrow-num {
   display: block;
@@ -1784,7 +1834,7 @@ video {
     grid-template-columns: 1fr;
   }
   .about-facts {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .about-fact:nth-child(1) {
     grid-row: auto;
@@ -2270,8 +2320,8 @@ video {
   margin-top: 1rem;
   font-family: var(--display);
   font-size: clamp(3.4rem, 7vw, 7rem);
-  line-height: .84;
-  max-width: 7ch;
+  line-height: .99;
+  max-width: 14ch;
 }
 .contact-copy h2 em {
   color: var(--red);
@@ -2439,6 +2489,33 @@ body.cookie-modal-open { overflow: hidden; }
   .cookie-banner-actions { justify-content: flex-start; }
 }
 
+
+@media (min-width: 761px) and (max-width: 1100px) {
+  .wrap {
+    padding-left: var(--edge);
+    padding-right: var(--edge);
+  }
+  .section-head {
+    align-items: flex-start;
+  }
+  .hero-left {
+    min-width: 0;
+  }
+  .hero-sub p,
+  .about-grid p.lede,
+  .game-about-description {
+    max-width: 58ch;
+  }
+  .focus {
+    margin-left: var(--edge);
+    margin-right: var(--edge);
+    width: calc(100% - var(--edge) * 2);
+  }
+  .work-card {
+    min-width: min(44vw, 520px);
+  }
+}
+
 @media (max-width: 760px) {
   .wrap { padding-left: var(--edge); padding-right: var(--edge); }
   .section-head { margin-bottom: 2rem; }
@@ -2540,14 +2617,15 @@ h2.section-title,
   text-transform: lowercase;
 }
 
-/* The business statement is deliberately Manrope, not Cyberillic. */
+/* Business statement follows the same display-heading treatment as the site's main headings. */
 .focus .focus-business-title {
-  font-family: var(--text);
-  font-weight: 800;
-  letter-spacing: -0.035em;
-  text-transform: none;
-  max-width: 17ch;
+  font-family: var(--display);
+  font-weight: normal;
+  letter-spacing: -0.01em;
+  max-width: 25ch;
+  margin-top: 1rem;
 }
+
 
 /* Book-like interactive footnote. */
 .footnote-ref {
@@ -2579,7 +2657,7 @@ h2.section-title,
   width: fit-content;
   max-width: 34rem;
   color: var(--grey);
-  font-size: .78rem;
+  font-size: 1.5rem;
 }
 .book-footnote summary {
   display: inline-flex;
@@ -2749,4 +2827,303 @@ h2.section-title,
   .contact-visual-label { left: 1.1rem; top: 1.2rem; }
   .contact-sticker { right: 4%; bottom: 4%; width: 5.4rem; }
   .contact-link { padding-right: .8rem; }
+}
+
+/* --- Final correction: home intro text + non-stretched ornamental dividers --- */
+.home-about-copy {
+  color: var(--paper);
+}
+.home-about-copy > p {
+  max-width: none;
+  font-family: var(--text);
+  font-weight: 500;
+  font-size: clamp(1.08rem, 1.75vw, 1.34rem);
+  line-height: 1.58;
+  color: var(--paper);
+}
+body.theme-light .home-about-copy,
+body.theme-light .home-about-copy > p {
+  color: var(--black);
+}
+
+section + section::before,
+section + section::after,
+footer::before,
+footer::after {
+  width: 39%;
+  max-width: none;
+  height: clamp(1.55rem, 2.5vw, 2.35rem);
+  background-repeat: no-repeat;
+  background-size: auto 100%;
+  background-color: transparent;
+}
+
+section + section::before,
+footer::before {
+  left: 0;
+  top: 0;
+  background-position: right center;
+}
+
+section + section::after,
+footer::after {
+  right: 0;
+  top: 0.7rem;
+  background-position: left center;
+  transform: scaleX(-1);
+  transform-origin: center;
+}
+
+@media (max-width: 760px) {
+  section + section::before,
+  section + section::after,
+  footer::before,
+  footer::after {
+    width: 34%;
+    height: 1.35rem;
+  }
+  section + section::after,
+  footer::after {
+    top: 0.5rem;
+  }
+}
+
+@media (max-width: 420px) {
+  section + section::before,
+  section + section::after,
+  footer::before,
+  footer::after {
+    width: 31%;
+    height: 1.15rem;
+  }
+  section + section::after,
+  footer::after {
+    top: 0.42rem;
+  }
+}
+
+/* --- Alternating single-sided ornamental dividers --- */
+body > section + section::before,
+body > section + section::after,
+body > footer::before,
+body > footer::after {
+  content: none;
+}
+
+body > section + section::before,
+body > section + section::after,
+body > footer::before,
+body > footer::after {
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  height: clamp(1.75rem, 2.8vw, 2.7rem);
+  width: 50%;
+  max-width: 50%;
+  background-image: url("img/ornament.png");
+  background-repeat: no-repeat;
+  background-color: transparent;
+  background-size: auto 100%;
+  pointer-events: none;
+  transform: none;
+}
+
+/* One side per divider; the ornament always reaches the page centre.
+   Keep its natural proportions instead of stretching it to the container. */
+body > section:nth-of-type(2n)::before,
+body > footer::after {
+  content: "";
+  left: 0;
+  right: auto;
+  background-position: right center;
+}
+
+body > section:nth-of-type(2n+1)::after {
+  content: "";
+  left: auto;
+  right: 0;
+  background-position: left center;
+}
+
+body > section + section > *,
+body > footer > * {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 760px) {
+  body > section + section::before,
+  body > section + section::after,
+  body > footer::before,
+  body > footer::after {
+    width: 50%;
+    max-width: 50%;
+    height: clamp(1.05rem, 4.5vw, 1.55rem);
+  }
+}
+
+@media (max-width: 420px) {
+  body > section + section::before,
+  body > section + section::after,
+  body > footer::before,
+  body > footer::after {
+    height: 1rem;
+  }
+}
+
+/* --- Final ornament pass: rarer, single-sided, mirrored on the right, no footer --- */
+/* Keep the footer completely clean. */
+footer::before,
+footer::after {
+  content: none !important;
+  display: none !important;
+}
+
+/* Clear all previous section divider pseudo-elements. */
+body > section::before,
+body > section::after {
+  content: none !important;
+  display: none !important;
+}
+
+/* Show the ornament only on every second section transition.
+   The visible side alternates: left -> right -> left -> right. */
+body > section:nth-of-type(even)::before {
+  content: "" !important;
+  display: block !important;
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  width: 50%;
+  height: clamp(1.65rem, 2.55vw, 2.4rem);
+  max-width: 50%;
+  background-image: url("img/ornament.webp");
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-size: auto 100%;
+  background-color: transparent;
+  pointer-events: none;
+}
+
+body > section:nth-of-type(4n)::before {
+  left: auto;
+  right: 0;
+  background-position: left center;
+  transform: scaleX(-1);
+  transform-origin: center;
+}
+
+body > section:nth-of-type(even) > * {
+  position: relative;
+  z-index: 1;
+}
+
+@media (max-width: 760px) {
+  body > section:nth-of-type(even)::before {
+    width: 50%;
+    max-width: 50%;
+    height: clamp(1.05rem, 4.2vw, 1.45rem);
+  }
+}
+
+@media (max-width: 420px) {
+  body > section:nth-of-type(even)::before {
+    height: 0.95rem;
+  }
+}
+
+/* ============================================================
+   РАЗДЕЛ «РАБОТЫ» — карточки проектов
+   Фото занимает всю верхнюю часть, текст — снизу на тёмной
+   подложке. Никаких пустых зон: высота блока с текстом
+   подстраивается под содержимое.
+   ============================================================ */
+
+/* Карточка: вертикальный flex, фото сверху, текст снизу */
+.works-section .work-card,
+.works-section .work-card.placeholder {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: stretch;
+  text-align: left;
+  padding: 0;
+  background: #0c0c0c;
+  overflow: hidden;
+  color: inherit;
+}
+
+/* Фото — растягивается на всё свободное место сверху */
+.works-section .work-card .work-photo {
+  position: relative !important;
+  inset: auto !important;
+  width: 100%;
+  height: auto;
+  flex: 1 1 auto;
+  min-height: 0;
+  object-fit: cover;
+  object-position: center;
+  z-index: 0;
+  opacity: 1;
+  transform: none;
+}
+
+/* Убираем глобальный градиент по всей карточке — он больше не нужен */
+.works-section .work-card::after {
+  display: none;
+}
+
+/* Метка (E-commerce · site) — поверх фото, в левом верхнем углу */
+.works-section .work-card > .case-mark {
+  position: absolute;
+  top: 1.3rem;
+  left: 1.5rem;
+  margin: 0;
+  z-index: 3;
+}
+
+/* Номер (01) — поверх фото, в правом верхнем углу */
+.works-section .work-card .num {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.4rem;
+  z-index: 3;
+}
+
+/* Текстовый блок — прижат к низу, высота по содержимому */
+.works-section .work-card-copy {
+  position: relative;
+  z-index: 2;
+  flex: 0 0 auto;
+  padding: 1.3rem 1.5rem 1.5rem;
+  background: #0c0c0c;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  margin: 0;
+}
+
+/* Метка внутри текстового блока (у карточек-заглушек) */
+.works-section .work-card-copy .case-mark {
+  position: static;
+  display: block;
+  margin: 0 0 0.55rem;
+}
+
+.works-section .work-card-copy h3 {
+  margin: 0 0 0.35rem;
+}
+
+.works-section .work-card-copy p {
+  margin: 0;
+}
+
+.works-section .work-card-copy .case-link {
+  display: inline-block;
+  margin-top: 0.75rem;
+}
+
+/* Убираем декоративную надпись «ЕРМАК» */
+.ermak-card::before {
+  content: none !important;
+  display: none !important;
 }

@@ -15,7 +15,7 @@
 
 <body>
 
-  <div class="hero-video-bg" aria-hidden="true"><video autoplay muted loop playsinline preload="auto">
+  <div class="hero-video-bg" aria-hidden="true"><video autoplay muted loop playsinline preload="metadata">
       <source src="video/hero.mp4" type="video/mp4">
     </video></div>
 
@@ -44,8 +44,8 @@
       <!-- правая колонка – большой кот -->
       <div class="hero-right">
         <div class="mascot" title="Гойда-кот">
-          <img src="img/kot3.png" alt="" class="mascot-closed">
-          <img src="img/kot4.png" alt="" class="mascot-open">
+          <img src="img/kot3.png" alt="" class="mascot-closed" decoding="async">
+          <img src="img/kot4.png" alt="" class="mascot-open" decoding="async">
           <span class="mascot-label">подначить</span>
         </div>
       </div>
@@ -55,8 +55,8 @@
   <!-- ABOUT -->
   <section id="about" class="wrap">
     <div class="about-grid">
-      <div class="lede reveal">
-        <p>Мы — цифровая студия полного цикла: проектируем, оформляем и запускаем сайты, визуальные системы и рекламу для бизнеса. Мы делаем так, чтобы увидев продукт, Вам захотелось <u>кричать от радости.</u><sup class="footnote-ref">1</sup></p>
+      <div class="lede reveal home-about-copy">
+        <p>Мы — <b>цифровая студия полного цикла:</b> проектируем, оформляем и запускаем сайты, визуальные системы и рекламу для бизнеса. Мы делаем так, чтобы увидев продукт, Вам захотелось <u>кричать от радости.</u><sup class="footnote-ref">1</sup></p>
         <details class="book-footnote" id="footnote-goida">
           <summary><span>1</span> Нажми плюсик</summary>
           <p>Го́йда (др. рус. междометие) — восклицание радости, искреннего одобрения.</p>
@@ -64,19 +64,19 @@
       </div>
       <div class="about-facts reveal">
         <article class="about-fact">
-          <div class="icon-slot" aria-hidden="true"><img src="img/icons/about-web.svg" alt=""></div>
+          <div class="icon-slot" aria-hidden="true"><img src="img/icons/about-web.svg" alt="" decoding="async"></div>
           <b>444</b>
           <span><strong>Четыре направления.</strong> Сайты, айдентика, видео и Яндекс Директ собраны в одной
             студии.</span>
         </article>
         <article class="about-fact">
-          <div class="icon-slot" aria-hidden="true"><img src="img/icons/about-team.svg" alt=""></div>
+          <div class="icon-slot" aria-hidden="true"><img src="img/icons/about-team.svg" alt="" decoding="async"></div>
           <b>ЗАМЕНА</b>
           <span><strong>Одна команда.</strong> От идеи до результата — без лишних посредников и передачи проекта по
             цепочке подрядчиков.</span>
         </article>
         <article class="about-fact">
-          <div class="icon-slot" aria-hidden="true"><img src="img/icons/about-games.svg" alt=""></div>
+          <div class="icon-slot" aria-hidden="true"><img src="img/icons/about-games.svg" alt="" decoding="async"></div>
           <b>ГОЙ</b>
           <span><strong>Свои продукты.</strong> Делаем собственные игры и развиваем «Путь казака» как отдельное
             направление.</span>
@@ -136,25 +136,25 @@
         <div class="focus-step interactive is-active" tabindex="0" data-focus-title="Исследование"
           data-focus-copy="Задача бизнеса, аудитория, конкуренты и точки роста — до любого визуального решения."
           data-icon="img/icons/web-research.svg">
-          <div class="step-icon"><img src="img/icons/web-research.svg" alt=""></div>
+          <div class="step-icon"><img src="img/icons/web-research.svg" alt="" decoding="async"></div>
           <b>Исследование</b><span>Понимаем, что должен делать сайт.</span>
         </div>
         <div class="focus-step interactive" tabindex="0" data-focus-title="UX / структура"
           data-focus-copy="Выстраиваем понятный путь пользователя: от первого экрана до действия, которое важно бизнесу."
           data-icon="img/icons/web-ux.svg">
-          <div class="step-icon"><img src="img/icons/web-ux.svg" alt=""></div>
+          <div class="step-icon"><img src="img/icons/web-ux.svg" alt="" decoding="async"></div>
           <b>UX / структура</b><span>Убираем лишние шаги и трение.</span>
         </div>
         <div class="focus-step interactive" tabindex="0" data-focus-title="UI / адаптив"
           data-focus-copy="Делаем визуальную систему, которая одинаково уверенно работает на широком экране, планшете и телефоне."
           data-icon="img/icons/web-ui.svg">
-          <div class="step-icon"><img src="img/icons/web-ui.svg" alt=""></div>
+          <div class="step-icon"><img src="img/icons/web-ui.svg" alt="" decoding="async"></div>
           <b>UI / адаптив</b><span>Собираем экран под любое устройство.</span>
         </div>
         <div class="focus-step interactive" tabindex="0" data-focus-title="Разработка / запуск"
           data-focus-copy="Вёрстаем, подключаем анимации, тестируем ключевые сценарии и выводим проект в работу."
           data-icon="img/icons/web-code.svg">
-          <div class="step-icon"><img src="img/icons/web-code.svg" alt=""></div>
+          <div class="step-icon"><img src="img/icons/web-code.svg" alt="" decoding="async"></div>
           <b>Разработка / запуск</b><span>Превращаем дизайн в работающий продукт.</span>
         </div>
       </div>
@@ -185,7 +185,7 @@
     </div>
     <div class="works-scroller" tabindex="0" aria-label="Портфолио. Прокрутите вправо, чтобы посмотреть остальные проекты.">
       <a class="work-card ermak-card reveal" href="https://ermakwear.shop" target="_blank" rel="noopener noreferrer">
-        <img class="work-photo" src="img/works/ermak.jpg" alt="ЕРМАК — визуал интернет-магазина" loading="lazy">
+        <img class="work-photo" src="img/works/ermak.jpg" alt="ЕРМАК — визуал интернет-магазина" loading="lazy" decoding="async">
         <span class="case-mark">E-commerce · site</span>
         <span class="num">01</span>
         <div class="work-card-copy">
@@ -195,7 +195,7 @@
         </div>
       </a>
       <article class="work-card placeholder reveal">
-        <img class="work-photo" src="img/works/project-02.jpg" alt="Фото второго проекта" loading="lazy">
+        <img class="work-photo" src="img/works/project-02.jpg" alt="Фото второго проекта" loading="lazy" decoding="async">
         <span class="num">02</span>
         <div class="work-card-copy">
           <span class="case-mark">Кейс · скоро</span>
@@ -204,7 +204,7 @@
         </div>
       </article>
       <article class="work-card placeholder reveal">
-        <img class="work-photo" src="img/works/project-03.jpg" alt="Фото третьего проекта" loading="lazy">
+        <img class="work-photo" src="img/works/project-03.jpg" alt="Фото третьего проекта" loading="lazy" decoding="async">
         <span class="num">03</span>
         <div class="work-card-copy">
           <span class="case-mark">Проект · скоро</span>
@@ -287,7 +287,7 @@
           <a href="games.html" class="btn btn-primary mt-lg">Смотреть игровые проекты</a>
         </div>
         <a href="games/the-way-of-the-cossack.html" class="game-frame reveal">
-          <img src="img/cossackway.png" alt="Путь казака — пиксельный платформер, атмосферный скриншот" loading="lazy">
+          <img src="img/cossackway.png" alt="Путь казака — пиксельный платформер, атмосферный скриншот" loading="lazy" decoding="async">
           <span class="cap">Путь казака · 2D pixel platformer</span>
         </a>
       </div>
@@ -299,7 +299,7 @@
     <div class="contact-card">
       <div class="contact-visual">
         <div class="contact-visual-label">digital / 02</div>
-        <img src="img/contact.jpg" alt="Фото студии Гойда" class="contact-photo" loading="lazy">
+        <img src="img/contact.jpg" alt="Фото студии Гойда" class="contact-photo" loading="lazy" decoding="async">
         <div class="contact-photo-index">2</div>
         <div class="contact-sticker">
           <span>Открыты<br>к новым<br>идеям</span>
@@ -309,7 +309,7 @@
 
       <div class="contact-copy">
         <span class="eyebrow-num">Контакты · 02 канала</span>
-        <h2>Есть идея?<br><em>Го́йда.</em></h2>
+        <h2>Есть идея?<br><em>Гойда!</em></h2>
         <p class="lede">Расскажите, что хотите сделать. Мы быстро выйдем на связь и уже там обсудим задачу, сроки и формат работы.</p>
 
         <div class="contact-links" aria-label="Способы связи">
