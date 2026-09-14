@@ -24,15 +24,24 @@ document.addEventListener('DOMContentLoaded', () => {
         </nav>
         <button class="burger" aria-label="Меню" aria-expanded="false"><span></span></button>
       </header>
-      <div class="mobile-menu">
-        <ul>
-          <li><a href="${home}#services">Услуги</a></li>
-          <li><a href="${home}#works">Работы</a></li>
-          <li><a href="${games}">Игры</a></li>
-          <li><a href="${home}#about">О студии</a></li>
-          <li><a href="${home}#contact">Контакты</a></li>
-        </ul>
-        <a href="${home}#contact" class="btn btn-primary">Обсудить проект</a>
+      <div class="mobile-menu" aria-hidden="true">
+        <div class="mobile-menu-inner">
+          <div class="mobile-menu-head">
+            <span class="mobile-menu-kicker">Навигация / GOYDA</span>
+            <span class="mobile-menu-line" aria-hidden="true"></span>
+          </div>
+          <ul>
+            <li><a href="${home}#services"><span>01</span>Услуги</a></li>
+            <li><a href="${home}#works"><span>02</span>Работы</a></li>
+            <li><a href="${games}"><span>03</span>Игры</a></li>
+            <li><a href="${home}#about"><span>04</span>О студии</a></li>
+            <li><a href="${home}#contact"><span>05</span>Контакты</a></li>
+          </ul>
+          <div class="mobile-menu-foot">
+            <a href="${home}#contact" class="btn btn-primary">Обсудить проект</a>
+            <span>Сайты · Айдентика · SMM</span>
+          </div>
+        </div>
       </div>`;
   }
 

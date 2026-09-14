@@ -465,6 +465,13 @@ footer > * {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}
+
+.mascot .mascot-closed,
+.mascot .mascot-open {
+  will-change: opacity;
 }
 
 .mascot .mascot-open {
@@ -1630,7 +1637,7 @@ video {
   border: 1px solid var(--grey-line);
   border-radius: 1.3rem;
   background: linear-gradient(145deg, #111, #0a0a0a);
-  overflow: hidden;
+  overflow: visible;
 }
 .why-chain::before {
   content: "";
@@ -1687,6 +1694,7 @@ video {
   border-color: #e3251b55;
   background: linear-gradient(145deg, #18100f, #101010);
   box-shadow: 0 1.3rem 2.5rem #0008;
+  z-index: 5;
 }
 .why-node.is-active::before,
 .why-node:hover::before,
@@ -3126,4 +3134,1240 @@ body > section:nth-of-type(even) > * {
 .ermak-card::before {
   content: none !important;
   display: none !important;
+}
+
+/* ==========================================================================
+   GOYDA redesign pass — responsive polish, interaction layers, accessibility
+   ========================================================================== */
+
+/* ST-Cyberillic is always treated as display typography and always upper-case. */
+h1,
+h2.section-title,
+.focus h2,
+.games-teaser h2,
+.cta-block h2,
+.contact-copy h2,
+.game-page .cossack-hero h1 {
+  font-family: var(--display);
+  text-transform: uppercase;
+}
+
+/* Keep the display type from creating accidental horizontal overflow. */
+h1, h2, h3, h4, p, span, a, button {
+  overflow-wrap: anywhere;
+}
+.btn {
+  min-height: 42px;
+  padding: .75em 1.2em;
+  font-size: clamp(.86rem, 1vw, .96rem);
+}
+
+/* Hero fill follows scroll progress through --fill (0..1). */
+.hero-statement {
+  position: relative;
+  isolation: isolate;
+  color: #fff;
+}
+.hero-fill-text {
+  display: inline-block;
+  color: transparent;
+  background-image: linear-gradient(90deg, var(--red) 0%, var(--red) calc(var(--fill, 0) * 100%), #fff calc(var(--fill, 0) * 100%), #fff 100%);
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.hero-fill-text .headline-word {
+  animation-name: headline-in;
+  color: inherit;
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+}
+.hero-statement.reveal {
+  opacity: 1;
+  transform: none;
+}
+
+/* Animated semantic accents: grey text becomes red when entering the viewport. */
+.accent-word {
+  color: var(--grey);
+  background-image: linear-gradient(90deg, var(--red), var(--red));
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  background-position: 0 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  transition: background-size .8s var(--ease), color .8s ease;
+}
+.accent-word.in-view {
+  background-size: 100% 100%;
+  color: transparent;
+}
+
+/* About cards: desktop grid; compact card stack on mobile. */
+.about-fact {
+  position: relative;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 1rem;
+  padding: 1rem 1.05rem;
+  background: rgba(255,255,255,.025);
+  transition: transform .45s var(--ease), border-color .35s, background .35s;
+}
+.about-fact:hover {
+  transform: translateY(-4px);
+  border-color: rgba(227,37,27,.35);
+  background: rgba(227,37,27,.05);
+}
+.about-fact b {
+  font-size: clamp(1rem, 1.45vw, 1.35rem);
+}
+.about-fact span {
+  display: block;
+  line-height: 1.55;
+}
+
+/* Service hover photography: long, low-opacity image strip across the row. */
+.service-row {
+  isolation: isolate;
+}
+.service-row .service-hover-photo {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background-image: var(--service-image);
+  background-size: cover;
+  background-position: center 48%;
+  opacity: 0;
+  transform: scale(1.04);
+  filter: grayscale(1) contrast(1.05);
+  transition: opacity .55s var(--ease), transform .8s var(--ease);
+}
+.service-row::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    rgba(10,10,10,.95) 0%,
+    rgba(10,10,10,.74) 48%,
+    rgba(10,10,10,.86) 100%
+  );
+  opacity: 0;
+  transition: opacity .55s ease;
+}
+.service-row:hover .service-hover-photo,
+.service-row:focus-visible .service-hover-photo,
+.service-row:active .service-hover-photo {
+  opacity: .28;
+  transform: scale(1);
+}
+.service-row:hover::after,
+.service-row:focus-visible::after,
+.service-row:active::after {
+  opacity: 1;
+}
+.service-row > *:not(.service-hover-photo) {
+  position: relative;
+  z-index: 2;
+}
+
+/* Focus block stage icon appears in the quiet top-right space. */
+.focus {
+  position: relative;
+  overflow: hidden;
+}
+.focus-stage-visual {
+  position: absolute;
+  top: clamp(1.5rem, 4vw, 3rem);
+  right: clamp(1.5rem, 5vw, 4rem);
+  width: clamp(8rem, 17vw, 15rem);
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(-12px) scale(.94);
+  transition: opacity .6s var(--ease), transform .6s var(--ease);
+}
+.focus-stage-visual::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(227,37,27,.16), rgba(227,37,27,0) 67%);
+}
+.focus-stage-visual-img {
+  width: 68%;
+  height: 68%;
+  object-fit: contain;
+  filter: grayscale(1) contrast(.9);
+  opacity: .12;
+  transition: opacity .45s ease;
+}
+.focus-stage-visual.is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+.focus-step {
+  position: relative;
+  z-index: 2;
+  border-top-width: 1px;
+  padding: 1rem;
+  border-radius: .8rem;
+  transition: transform .45s var(--ease), background .35s, border-color .35s;
+}
+.focus-step:hover,
+.focus-step.is-active,
+.focus-step:focus-visible {
+  transform: translateY(-4px);
+  background: rgba(0,0,0,.045);
+  outline: none;
+}
+.focus-step .step-icon {
+  width: 2.7rem;
+  height: 2.7rem;
+  display: grid;
+  place-items: center;
+  margin-bottom: .8rem;
+}
+.focus-step .step-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: grayscale(1);
+  opacity: .78;
+}
+
+/* Why Goyda: replace the old circular node marker with swappable vector asset. */
+.why-node::before {
+  width: 2.1rem;
+  height: 2.1rem;
+  top: -.6rem;
+  left: 1rem;
+  border-radius: 0;
+  background: url("img/why-goyda/icon.png") center / contain no-repeat;
+  box-shadow: none;
+  transition: transform .35s var(--ease), filter .35s ease;
+}
+.why-node.is-active::before,
+.why-node:hover::before,
+.why-node:focus-visible::before {
+  background-color: transparent;
+  transform: scale(1.12) rotate(-5deg);
+  filter: drop-shadow(0 0 7px rgba(227,37,27,.28));
+}
+.why-node .node-num {
+  margin-bottom: 1.3rem;
+}
+
+/* FAQ: smooth grid-row animation instead of fixed max-height. */
+.faq-item .a {
+  display: grid;
+  grid-template-rows: 0fr;
+  max-height: none;
+  padding-top: 0;
+  overflow: hidden;
+  transition: grid-template-rows .45s var(--ease), padding .45s var(--ease), opacity .35s ease;
+  opacity: .72;
+}
+.faq-item .a > p {
+  min-height: 0;
+  overflow: hidden;
+}
+.faq-item.open .a {
+  grid-template-rows: 1fr;
+  padding-top: .9rem;
+  opacity: 1;
+}
+.faq-item .plus {
+  display: grid;
+  place-items: center;
+  width: 1.65rem;
+  height: 1.65rem;
+  border: 1px solid currentColor;
+  border-radius: 50%;
+}
+
+/* Game page social links. */
+.game-social-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: .8rem;
+}
+.game-social-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto minmax(0,1fr) auto;
+  align-items: center;
+  gap: 1rem;
+  min-height: 92px;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--grey-line);
+  border-radius: 1rem;
+  background: linear-gradient(145deg, rgba(255,255,255,.035), rgba(255,255,255,.01));
+  overflow: hidden;
+  transition: transform .45s var(--ease), border-color .35s, background .35s, box-shadow .45s var(--ease);
+}
+.game-social-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(110deg, rgba(227,37,27,.18), transparent 58%);
+  transform: translateX(-100%);
+  transition: transform .55s var(--ease);
+}
+.game-social-card > * {
+  position: relative;
+  z-index: 1;
+}
+.game-social-card:hover,
+.game-social-card:focus-visible {
+  transform: translateY(-4px);
+  border-color: rgba(227,37,27,.55);
+  box-shadow: 0 1rem 2.2rem rgba(0,0,0,.22);
+  outline: none;
+}
+.game-social-card:hover::before,
+.game-social-card:focus-visible::before {
+  transform: translateX(0);
+}
+.game-social-icon {
+  width: 2.75rem;
+  height: 2.75rem;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255,255,255,.14);
+  border-radius: .8rem;
+  font-weight: 800;
+  font-size: .78rem;
+}
+.game-social-copy {
+  display: flex;
+  flex-direction: column;
+  gap: .18rem;
+}
+.game-social-copy b {
+  font-size: 1rem;
+}
+.game-social-copy small {
+  color: var(--grey);
+  font-size: .84rem;
+}
+.game-social-arrow {
+  font-size: 1.5rem;
+  transition: transform .35s var(--ease), color .35s;
+}
+.game-social-card:hover .game-social-arrow {
+  color: var(--red);
+  transform: translate(2px,-2px);
+}
+
+/* Games listing: small tag in the top-left and no old 01 marker. */
+.game-card {
+  overflow: hidden;
+}
+.game-card .num {
+  display: none !important;
+}
+.game-card .tag {
+  position: static;
+  align-self: flex-start;
+  margin: 1rem 1rem .55rem;
+  z-index: 3;
+  padding: .45em .75em;
+  font-size: .72rem;
+  letter-spacing: .08em;
+}
+.game-card.game-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.game-card .game-card-image {
+  position: relative;
+  z-index: 0;
+  display: block;
+  width: 100%;
+  flex: 1 1 auto;
+  min-height: 0;
+  object-fit: cover;
+}
+.game-card > h3,
+.game-card > p {
+  position: relative;
+  z-index: 2;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+.game-card > h3 { margin-top: .85rem; }
+.game-card > p { margin-bottom: 1rem; }
+
+/* Touch-safe mascot hit target. */
+.mascot {
+  z-index: 4;
+  pointer-events: auto;
+  touch-action: manipulation;
+}
+.mascot img { pointer-events: none; }
+.mascot-label { pointer-events: none; }
+
+/* Mobile menu — creative, compact, staggered, safe to viewport. */
+.mobile-menu {
+  padding: calc(env(safe-area-inset-top) + 5.25rem) var(--edge) calc(env(safe-area-inset-bottom) + 1.25rem);
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+.mobile-menu-inner {
+  width: min(100%, 34rem);
+  margin: 0 auto;
+}
+.mobile-menu-head {
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+  margin-bottom: 1.6rem;
+  color: rgba(255,255,255,.55);
+}
+.mobile-menu-kicker {
+  font-size: .72rem;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}
+.mobile-menu-line {
+  flex: 1;
+  height: 1px;
+  background: currentColor;
+  opacity: .35;
+}
+.mobile-menu ul {
+  gap: .55rem;
+  margin-bottom: 1.8rem;
+}
+.mobile-menu li {
+  overflow: hidden;
+}
+.mobile-menu li a {
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  gap: .85rem;
+  align-items: baseline;
+  padding: .75rem 0;
+  font-family: var(--display);
+  font-size: clamp(2rem, 8vw, 3.2rem);
+  line-height: .92;
+  text-transform: uppercase;
+  transform: translateY(115%);
+  opacity: 0;
+  transition: transform .55s var(--ease), opacity .4s ease, color .3s;
+  transition-delay: calc(var(--menu-i, 0) * 45ms);
+}
+.mobile-menu li:nth-child(1) a { --menu-i: 0; }
+.mobile-menu li:nth-child(2) a { --menu-i: 1; }
+.mobile-menu li:nth-child(3) a { --menu-i: 2; }
+.mobile-menu li:nth-child(4) a { --menu-i: 3; }
+.mobile-menu li:nth-child(5) a { --menu-i: 4; }
+.mobile-menu li a span {
+  font-family: var(--text);
+  font-size: .62rem;
+  color: var(--red);
+  letter-spacing: .08em;
+}
+.mobile-menu.open li a {
+  transform: translateY(0);
+  opacity: 1;
+}
+.mobile-menu li a:hover,
+.mobile-menu li a:focus-visible {
+  color: var(--red);
+  outline: none;
+}
+.mobile-menu-foot {
+  display: grid;
+  gap: .75rem;
+  padding-top: .3rem;
+}
+.mobile-menu-foot .btn {
+  justify-content: center;
+  width: min(100%, 18rem);
+}
+.mobile-menu-foot > span {
+  color: rgba(255,255,255,.42);
+  font-size: .72rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+/* Mid-size screens: iPad/tablet gets its own balanced geometry. */
+@media (min-width: 861px) and (max-width: 1180px) {
+  :root {
+    --edge: clamp(1.5rem, 4vw, 2.75rem);
+  }
+  section {
+    padding-top: clamp(4rem, 8vw, 6rem);
+    padding-bottom: clamp(4rem, 8vw, 6rem);
+  }
+  .hero {
+    padding-top: 7.5rem;
+    padding-bottom: 2.4rem;
+  }
+  .hero-grid {
+    grid-template-columns: minmax(0, 1.08fr) minmax(280px, .92fr);
+    gap: clamp(1.5rem, 3vw, 2.5rem);
+  }
+  .hero h1 {
+    font-size: clamp(3.4rem, 7.4vw, 6.3rem);
+    max-width: 12ch;
+  }
+  .mascot {
+    max-width: 330px;
+  }
+  .about-grid {
+    grid-template-columns: minmax(0, 1.05fr) minmax(300px, .95fr);
+  }
+  .about-facts {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .focus-steps.interactive {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .why-chain-wrap {
+    grid-template-columns: minmax(0, 1.35fr) minmax(250px, .65fr);
+  }
+  .why-chain {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .why-node:nth-child(n + 4) {
+    margin-top: 0;
+  }
+  .contact-card {
+    margin: 0;
+    width: 100%;
+    min-height: 520px;
+  }
+  .contact-visual {
+    min-height: 520px;
+  }
+}
+
+/* Mobile: the three service-story cards become a readable paper-stack. */
+@media (max-width: 760px) {
+  :root {
+    --edge: clamp(1rem, 5vw, 1.5rem);
+    --radius: .95rem;
+  }
+  body {
+    font-size: 15px;
+  }
+  .logo img {
+    height: 52px;
+  }
+  .burger {
+    width: 46px;
+    height: 46px;
+    border-radius: .9rem;
+    background: rgba(255,255,255,.045);
+  }
+  .hero {
+    padding-top: 6.8rem;
+    padding-bottom: 2.2rem;
+  }
+  .hero h1 {
+    font-size: clamp(2.55rem, 12.2vw, 4.5rem);
+    max-width: 11ch;
+  }
+  .hero-sub p {
+    font-size: .98rem;
+  }
+  .hero-ctas .btn {
+    width: auto;
+    min-width: 0;
+    justify-content: center;
+  }
+  .about-grid {
+    gap: 2rem;
+  }
+  .about-facts {
+    display: flex;
+    gap: 0;
+  }
+  .about-fact.stack-card {
+    min-height: 0;
+    margin-top: -1rem;
+    border-radius: 1rem;
+    padding: 1.2rem 1rem 1.35rem;
+  }
+  .about-fact.stack-card:first-child {
+    margin-top: 0;
+    transform: rotate(-1.2deg);
+    z-index: 1;
+  }
+  .about-fact.stack-card:nth-child(2) {
+    transform: translateX(.35rem) rotate(.8deg);
+    z-index: 2;
+  }
+  .about-fact.stack-card:nth-child(3) {
+    transform: translateX(.1rem) rotate(-.65deg);
+    z-index: 3;
+  }
+  .about-fact.stack-card:hover {
+    transform: translateY(-3px) rotate(0);
+  }
+  .about-fact b {
+    font-size: .98rem;
+  }
+  .about-fact span {
+    font-size: .88rem;
+  }
+  .service-row {
+    grid-template-columns: 34px minmax(0, 1fr) 24px;
+    min-height: 0;
+    padding: 1.2rem 0;
+    gap: .65rem;
+  }
+  .service-row h3 {
+    font-size: clamp(1.35rem, 7vw, 1.9rem);
+  }
+  .service-row p {
+    font-size: .84rem;
+    line-height: 1.45;
+  }
+  .focus {
+    margin: 0 var(--edge);
+    padding: 1.3rem;
+    border-radius: 1rem;
+  }
+  .focus h2 {
+    font-size: clamp(1.85rem, 9vw, 2.9rem);
+    max-width: 13ch;
+  }
+  .focus-stage-visual {
+    display: none;
+  }
+  .focus-steps {
+    grid-template-columns: 1fr;
+    gap: .7rem;
+    margin-top: 1.6rem;
+  }
+  .focus-step {
+    padding: .9rem;
+  }
+  .focus-detail {
+    display: none;
+  }
+  .why-chain-wrap {
+    display: block;
+  }
+  .why-chain {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: .85rem;
+    padding: 1rem .8rem 1rem 1.25rem;
+  }
+  .why-chain::before {
+    left: .7rem;
+    right: auto;
+    top: 1rem;
+    bottom: 1rem;
+    width: 1px;
+    height: auto;
+    background: linear-gradient(180deg, transparent, #ffffff28 8%, #ffffff28 92%, transparent);
+  }
+  .why-node,
+  .why-node:nth-child(n + 4) {
+    width: 82%;
+    min-height: 0;
+    margin: 0;
+    padding: 1rem;
+  }
+  .why-node:nth-child(even) {
+    justify-self: end;
+    margin-right: 2%;
+  }
+  .why-node:nth-child(odd) {
+    justify-self: start;
+  }
+  .why-node .node-num {
+    margin-bottom: .9rem;
+  }
+  .why-detail {
+    display: none;
+  }
+  .games-teaser-grid {
+    gap: 1.4rem;
+  }
+  .game-social-grid {
+    grid-template-columns: 1fr;
+  }
+  .game-social-card {
+    min-height: 84px;
+  }
+  .contact-card {
+    grid-template-columns: 1fr;
+    margin: 0;
+    width: 100%;
+    min-height: 0;
+  }
+  .contact-visual {
+    min-height: 300px;
+  }
+  .contact-copy {
+    padding: 1.4rem;
+  }
+  .contact-links {
+    grid-template-columns: 1fr;
+  }
+  .contact-copy h2 {
+    font-size: clamp(2.8rem, 14vw, 4.8rem);
+  }
+  .faq-item .q {
+    font-size: .98rem;
+  }
+  .page-hero {
+    padding-top: 7rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-fill-text .headline-word {
+    animation: none;
+    background-image: none;
+    color: #fff;
+  }
+  .accent-word,
+  .accent-word.in-view {
+    background-size: 100% 100%;
+  }
+}
+
+/* Prevent the horizontal case rail from leaking into the document at tablet widths. */
+.works-scroller {
+  min-width: 0;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+
+@media (min-width: 761px) and (max-width: 1180px) {
+  .mascot-label {
+    right: 1.8rem;
+    transform: translate(0, -50%) rotate(-5deg);
+  }
+}
+
+
+/* FAQ / footnote: smooth reveal for native details */
+.book-footnote {
+  display: grid;
+  grid-template-rows: auto 0fr;
+  transition: grid-template-rows .45s var(--ease);
+}
+.book-footnote[open] {
+  grid-template-rows: auto 1fr;
+}
+.book-footnote > p {
+  min-height: 0;
+  overflow: hidden;
+  margin-top: 0;
+  padding-top: 0;
+  opacity: 0;
+  transform: translateY(-.35rem);
+  transition: opacity .35s ease, transform .45s var(--ease), padding-top .45s var(--ease);
+}
+.book-footnote[open] > p {
+  margin-top: .75rem;
+  padding-top: .8rem;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Keep the four stage icons small and red; only the top-right visual is monochrome. */
+.focus-step .step-icon {
+  width: 2.45rem;
+  height: 2.45rem;
+  margin-bottom: 1.45rem;
+  color: var(--red);
+  background: #fff;
+}
+.focus-step .step-icon img {
+  width: 1.15rem;
+  height: 1.15rem;
+  filter: none;
+  opacity: 1;
+}
+.focus-stage-visual-img {
+  filter: grayscale(1) contrast(.9);
+  opacity: .12;
+}
+
+/* Mobile stack: preserve the overlap, but make every paper/card fully opaque. */
+@media (max-width: 760px) {
+  .about-fact.stack-card {
+    background: #101010;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  /* iPhone hero headline should remain white/red and never inherit transparent text. */
+  .hero-statement { color: #fff; }
+  .hero-fill-text { color: transparent; }
+
+  /* Why-chain becomes a centered branch with cards alternating like leaves. */
+  .why-chain {
+    position: relative;
+    padding: 1rem .7rem;
+    overflow: visible;
+  }
+  .why-chain::before {
+    left: 50%;
+    right: auto;
+    top: 1rem;
+    bottom: 1rem;
+    width: 1px;
+    height: auto;
+    transform: translateX(-50%);
+    background: linear-gradient(180deg, transparent, #ffffff28 8%, #ffffff28 92%, transparent);
+  }
+  .why-node,
+  .why-node:nth-child(n + 4) {
+    width: 44%;
+    max-width: 15rem;
+    margin: 0;
+  }
+  .why-node:nth-child(odd) {
+    justify-self: start;
+    margin-right: auto;
+  }
+  .why-node:nth-child(even) {
+    justify-self: end;
+    margin-right: 0;
+  }
+  .why-node::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 1.4rem;
+    height: 1px;
+    background: #ffffff28;
+    transform: translateY(-50%);
+  }
+  .why-node:nth-child(odd)::after {
+    left: 100%;
+  }
+  .why-node:nth-child(even)::after {
+    right: 100%;
+  }
+}
+
+/* iPad / tablet: keep the cat close to the header instead of vertically centering a huge empty hero. */
+@media (min-width: 861px) and (max-width: 1180px) {
+  .hero {
+    min-height: auto;
+    justify-content: flex-start;
+    padding-top: 6rem;
+    padding-bottom: 2.5rem;
+  }
+  .hero-grid {
+    align-items: start;
+  }
+  .hero-right {
+    align-items: flex-start;
+  }
+  .mascot {
+    margin-top: .35rem;
+  }
+}
+
+
+/* FINAL FIXES — keep component geometry deterministic across the existing cascade. */
+.hero-fill-text {
+  color: transparent !important;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(
+    90deg,
+    var(--red) 0%,
+    var(--red) calc(var(--fill, 0) * 100%),
+    #fff calc(var(--fill, 0) * 100%),
+    #fff 100%
+  );
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+.hero-fill-text .headline-word {
+  color: inherit !important;
+  -webkit-text-fill-color: inherit;
+  background: none !important;
+  -webkit-background-clip: initial !important;
+  background-clip: initial !important;
+}
+
+/* The game label occupies real top space; it never sits over the artwork or copy. */
+.works-section .game-card,
+.game-card.game-card {
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  overflow: hidden;
+}
+.game-card.game-card .tag,
+.works-section .game-card > .tag {
+  position: static !important;
+  inset: auto !important;
+  align-self: flex-start;
+  flex: 0 0 auto;
+  margin: 1rem 1rem .65rem !important;
+  z-index: 5 !important;
+}
+.game-card.game-card img.game-card-image,
+.works-section .game-card img.game-card-image {
+  position: relative !important;
+  inset: auto !important;
+  display: block;
+  width: 100% !important;
+  height: auto !important;
+  min-height: 0;
+  flex: 1 1 auto;
+  object-fit: cover;
+  z-index: 1 !important;
+}
+.game-card.game-card > h3,
+.game-card.game-card > p {
+  position: relative !important;
+  z-index: 5 !important;
+  flex: 0 0 auto;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+.game-card.game-card > h3 { margin-top: .8rem; }
+.game-card.game-card > p { margin-bottom: 1rem; }
+.game-card.game-card::after { z-index: 2 !important; }
+
+/* Touch devices: the mascot itself always owns the hit area. */
+@media (max-width: 860px) {
+  .mascot {
+    position: relative;
+    z-index: 20 !important;
+    pointer-events: auto !important;
+    touch-action: manipulation;
+  }
+  .mascot::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 21;
+    pointer-events: auto;
+  }
+  .mascot img,
+  .mascot-label { pointer-events: none !important; }
+}
+
+/* Mobile stack direction: each next card is placed above the previous card. */
+@media (max-width: 760px) {
+  .about-fact.stack-card:first-child { z-index: 1 !important; }
+  .about-fact.stack-card:nth-child(2) { z-index: 2 !important; }
+  .about-fact.stack-card:nth-child(3) { z-index: 3 !important; }
+}
+
+/* ============================================================
+   ROUND 4 — definitive hero/game-card fixes
+   ============================================================ */
+
+/* Hero: guaranteed-visible white base + reversible red overlay. */
+.hero-statement.hero-fill-text {
+  --fill: 0;
+  position: relative;
+  color: #fff !important;
+  -webkit-text-fill-color: initial !important;
+}
+.hero-statement.hero-fill-text .hero-base-text {
+  display: block;
+  position: relative;
+  z-index: 1;
+  color: #fff !important;
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+}
+.hero-statement.hero-fill-text .hero-red-text {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: block;
+  color: var(--red) !important;
+  clip-path: polygon(
+    0 0,
+    calc(var(--fill) * 100%) 0,
+    calc(var(--fill) * 100%) 100%,
+    0 100%
+  );
+  will-change: clip-path;
+  pointer-events: none;
+}
+
+/* Games card: image is the complete card background; text sits on bottom gradient. */
+.games-grid .game-card.game-card {
+  position: relative !important;
+  display: block !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  background: #0b0b0b !important;
+  isolation: isolate;
+}
+.games-grid .game-card.game-card::after {
+  content: "";
+  position: absolute !important;
+  inset: 0 !important;
+  z-index: 1 !important;
+  display: block !important;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, .94) 0%,
+    rgba(0, 0, 0, .68) 23%,
+    rgba(0, 0, 0, .16) 55%,
+    rgba(0, 0, 0, 0) 78%
+  ) !important;
+  pointer-events: none !important;
+}
+.games-grid .game-card.game-card .game-card-image {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  display: block !important;
+  margin: 0 !important;
+  z-index: 0 !important;
+  transform: none !important;
+}
+.games-grid .game-card.game-card .tag {
+  position: absolute !important;
+  top: 1rem !important;
+  left: 1rem !important;
+  margin: 0 !important;
+  z-index: 3 !important;
+}
+.games-grid .game-card.game-card .game-card-copy {
+  position: absolute !important;
+  left: 1rem !important;
+  right: 1rem !important;
+  bottom: 1rem !important;
+  z-index: 3 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: 0 !important;
+}
+.games-grid .game-card.game-card .game-card-copy h3,
+.games-grid .game-card.game-card .game-card-copy p {
+  position: static !important;
+  margin: 0 !important;
+  color: #fff !important;
+}
+.games-grid .game-card.game-card .game-card-copy h3 {
+  margin-bottom: .35rem !important;
+}
+.games-grid .game-card.game-card .game-card-copy p {
+  max-width: 42ch;
+  font-size: clamp(.9rem, 1.15vw, 1.05rem) !important;
+  line-height: 1.45 !important;
+  color: rgba(255,255,255,.84) !important;
+}
+
+/* Game page: description matches the studio intro typography on every breakpoint. */
+.game-page .about-grid .game-about-description {
+  font-family: var(--text) !important;
+  font-weight: 500 !important;
+  font-size: clamp(1.08rem, 1.75vw, 1.34rem) !important;
+  line-height: 1.58 !important;
+  max-width: none !important;
+}
+
+@media (max-width: 760px) {
+  .games-grid .game-card.game-card .tag {
+    top: .9rem !important;
+    left: .9rem !important;
+  }
+  .games-grid .game-card.game-card .game-card-copy {
+    left: .9rem !important;
+    right: .9rem !important;
+    bottom: .9rem !important;
+  }
+}
+
+
+/* FINAL MICRO-FIXES */
+/* Hero: keep “digital” red from the first paint; animate only the remaining phrase. */
+.hero-statement.hero-fill-text {
+  color: #fff !important;
+  background: none !important;
+  -webkit-text-fill-color: initial !important;
+}
+.hero-statement.hero-fill-text .hero-prefix {
+  color: #fff !important;
+}
+.hero-statement.hero-fill-text .hero-digital {
+  color: var(--red) !important;
+  -webkit-text-fill-color: var(--red) !important;
+}
+.hero-statement.hero-fill-text .hero-fill-part {
+  display: inline;
+  color: transparent !important;
+  -webkit-text-fill-color: transparent !important;
+  background-image: linear-gradient(
+    90deg,
+    var(--red) 0%,
+    var(--red) calc(var(--fill, 0) * 100%),
+    #fff calc(var(--fill, 0) * 100%),
+    #fff 100%
+  );
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  transition: none;
+}
+
+/* Why Goyda: the marker must stay above every card, including after tap/focus. */
+.why-node {
+  overflow: visible !important;
+  position: relative;
+  z-index: 2;
+}
+.why-node:hover,
+.why-node:focus-visible,
+.why-node.is-active,
+.why-node:active {
+  z-index: 20 !important;
+}
+.why-node::before {
+  z-index: 30 !important;
+  pointer-events: none !important;
+}
+
+/* Mobile website-focus block: tighter heading, clearer text rhythm, and more breathing room before the progress bar. */
+@media (max-width: 760px) {
+  .focus {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .focus .focus-business-title {
+    max-width: 16ch;
+    margin-top: .7rem;
+    font-size: clamp(1.7rem, 8.7vw, 2.35rem);
+    line-height: .98;
+    letter-spacing: -.025em;
+  }
+  .focus .focus-intro {
+    max-width: 34ch;
+    margin-top: .9rem !important;
+    font-size: .9rem;
+    line-height: 1.45;
+  }
+  .focus-steps.interactive {
+    gap: .8rem;
+    margin-top: 1.8rem;
+  }
+  .focus-step.interactive {
+    min-height: 136px;
+    padding: 1rem;
+  }
+  .focus-step.interactive::after {
+    bottom: .9rem;
+    height: 3px;
+  }
+  .focus-step.interactive span {
+    max-width: 26ch;
+    margin-top: .45rem;
+    line-height: 1.4;
+    padding-bottom: 1.15rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-statement.hero-fill-text .hero-fill-part {
+    background-image: none;
+    color: #fff !important;
+    -webkit-text-fill-color: #fff !important;
+  }
+}
+
+/* FINAL WHY ICON LAYER FIX
+   Keep the top-left icon above neighboring cards when a card is hovered/focused.
+*/
+.why-node {
+  isolation: isolate;
+}
+.why-node::before {
+  z-index: 100 !important;
+  pointer-events: none;
+}
+.why-node:hover,
+.why-node:focus-visible,
+.why-node.is-active {
+  z-index: 50 !important;
+}
+
+@media (max-width: 760px) {
+  .why-node:hover,
+  .why-node:focus-visible,
+  .why-node.is-active {
+    z-index: 50 !important;
+  }
+  .why-node::before {
+    z-index: 100 !important;
+  }
+}
+
+
+/* Definitive Why Goyda icon fix: use a real child element so it can sit above neighboring cards. */
+.why-chain { position: relative; z-index: 0; }
+.why-node {
+  overflow: visible !important;
+  position: relative !important;
+  isolation: auto !important;
+}
+.why-node .why-node-icon {
+  position: absolute;
+  top: -0.65rem;
+  left: 0.9rem;
+  width: 2.25rem;
+  height: 2.25rem;
+  display: grid;
+  place-items: center;
+  z-index: 1000 !important;
+  pointer-events: none;
+  transform: translateZ(10px);
+  transition: transform .35s var(--ease), filter .35s ease;
+}
+.why-node .why-node-icon img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.why-node:hover .why-node-icon,
+.why-node:focus-visible .why-node-icon,
+.why-node.is-active .why-node-icon,
+.why-node:active .why-node-icon {
+  transform: translateZ(10px) scale(1.12) rotate(-5deg);
+  filter: drop-shadow(0 0 7px rgba(227,37,27,.28));
+}
+/* Disable the legacy pseudo icon completely. */
+.why-node::before {
+  content: none !important;
+  display: none !important;
+}
+
+/* Start hero fill earlier: keep the same smooth progression, but trigger before the title reaches the top area. */
+.hero-statement.hero-fill-text .hero-fill-part {
+  transition: none;
 }
