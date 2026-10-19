@@ -1,5 +1,49 @@
 // ГОЙДА — общий скрипт сайта
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('site:components-ready', () => {
+
+
+  /* Theme switcher: dark is the default; explicit choice persists across pages. */
+  const themeKey = 'goida_theme';
+  const setTheme = (theme, persist = false) => {
+    const isLight = theme === 'light';
+    document.body.classList.toggle('theme-light', isLight);
+
+    document.querySelectorAll('[data-theme-toggle]').forEach(button => {
+      button.setAttribute('aria-pressed', String(isLight));
+      button.setAttribute('aria-label', isLight ? 'Включить тёмную тему' : 'Включить светлую тему');
+      button.title = isLight ? 'Тёмная тема' : 'Светлая тема';
+    });
+
+    document.querySelectorAll('img[data-theme-dark-src][data-theme-light-src]').forEach(image => {
+      const nextSrc = isLight ? image.dataset.themeLightSrc : image.dataset.themeDarkSrc;
+      if (nextSrc && image.getAttribute('src') !== nextSrc) image.setAttribute('src', nextSrc);
+    });
+
+    document.querySelectorAll('video[data-theme-video]').forEach(video => {
+      const nextSrc = isLight ? video.dataset.lightSrc : video.dataset.darkSrc;
+      if (!nextSrc || video.getAttribute('src') === nextSrc) return;
+      const wasPlaying = !video.paused;
+      video.setAttribute('src', nextSrc);
+      video.load();
+      if (wasPlaying) {
+        const playback = video.play();
+        if (playback && typeof playback.catch === 'function') playback.catch(() => {});
+      }
+    });
+
+    if (persist) {
+      try { localStorage.setItem(themeKey, isLight ? 'light' : 'dark'); } catch (_) {}
+    }
+  };
+
+  let preferredTheme = 'dark';
+  try { preferredTheme = localStorage.getItem(themeKey) === 'light' ? 'light' : 'dark'; } catch (_) {}
+  setTheme(preferredTheme);
+  document.querySelectorAll('[data-theme-toggle]').forEach(button => {
+    button.addEventListener('click', () => {
+      setTheme(document.body.classList.contains('theme-light') ? 'dark' : 'light', true);
+    });
+  });
 
   /* header shrink on scroll */
   const header = document.querySelector('.site-header');

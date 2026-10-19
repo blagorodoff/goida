@@ -4,21 +4,21 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Гойда — цифровая студия. Сайты, айдентика, SMM</title>
+  <title>Гойда — цифровая студия. Сайты и айдентика</title>
   <meta name="description"
-    content="Цифровая студия «Гойда» создаёт сайты, айдентику и ведёт соцсети для бизнеса — от стратегии и дизайна до регулярного контента. Обсудим ваш проект.">
+    content="Цифровая студия «Гойда» создаёт сайты и визуальные системы для бизнеса — от структуры и дизайна до запуска. Обсудим ваш проект.">
   <meta property="og:title" content="Гойда — цифровая студия">
-  <meta property="og:description" content="Сайты, айдентика и SMM для бизнеса — стратегия, дизайн, контент и развитие цифрового присутствия.">
+  <meta property="og:description" content="Сайты и айдентика для бизнеса — стратегия, дизайн и развитие цифрового присутствия.">
   <meta property="og:type" content="website">
   <link rel="preload" as="image" href="img/kot4.png" fetchpriority="high">
-  <link rel="stylesheet" href="style.css">
+  <link rel="preload" as="image" href="img/kot2.png">
+  <link rel="stylesheet" href="style.css?v=20261019-theme-light">
 </head>
 
-<body>
+<body class="home-page">
+  <script>(function(){try{if(localStorage.getItem('goida_theme')==='light')document.body.classList.add('theme-light')}catch(_){}})();</script>
 
-  <div class="hero-video-bg" aria-hidden="true"><video autoplay muted loop playsinline preload="metadata">
-      <source src="video/hero.mp4" type="video/mp4">
-    </video></div>
+  <div class="hero-video-bg" aria-hidden="true"><video autoplay muted loop playsinline preload="metadata" src="video/hero.mp4" data-theme-video data-dark-src="video/hero.mp4" data-light-src="video/hero2.mp4"></video></div>
 
   <div data-site-header></div>
 
@@ -28,13 +28,13 @@
       <!-- левая колонка – весь текст -->
       <div class="hero-left">
         <div class="hero-top">
-          <p class="hero-kicker">Цифровая студия. Сайты · Айдентика · SMM</p>
+          <p class="hero-kicker">Цифровая студия. Сайты · Айдентика</p>
         </div>
         <h1 class="reveal hero-statement hero-fill-text" aria-label="Создаём digital, который работает.">
           <span class="hero-prefix">Создаём <span class="hero-digital">digital</span>, </span><span class="hero-fill-part">который работает.</span>
         </h1>
         <div class="hero-sub">
-          <p>Сайты, айдентика и SMM — от стратегии и визуальной системы до регулярного контента и развития бренда.</p>
+          <p>Сайты и айдентика — от стратегии и визуальной системы до запуска и развития бренда.</p>
           <div class="hero-ctas">
             <a href="#contact" class="btn btn-primary">Обсудить проект</a>
             <a href="#works" class="btn btn-ghost">Посмотреть работы</a>
@@ -45,8 +45,10 @@
       <!-- правая колонка – большой кот -->
       <div class="hero-right">
         <div class="mascot" title="Гойда-кот">
-          <img src="img/kot3.png" alt="" class="mascot-closed" decoding="async">
-          <img src="img/kot4.png" alt="" class="mascot-open" decoding="async">
+          <img src="img/kot3.png" alt="" class="mascot-closed mascot-dark" decoding="async">
+          <img src="img/kot4.png" alt="" class="mascot-open mascot-dark" decoding="async">
+          <img src="img/kot.png" alt="" class="mascot-closed mascot-light" decoding="async">
+          <img src="img/kot2.png" alt="" class="mascot-open mascot-light" decoding="async">
           <span class="mascot-label">подначить</span>
         </div>
       </div>
@@ -57,7 +59,7 @@
   <section id="about" class="wrap">
     <div class="about-grid">
       <div class="lede reveal home-about-copy">
-        <p>Мы — <b class="accent-word">цифровая студия полного цикла</b>: проектируем, оформляем и запускаем <b class="accent-word">сайты, визуальные системы и рекламу</b> для бизнеса. Мы делаем так, чтобы увидев продукт, Вам захотелось <u>кричать от радости.</u><sup class="footnote-ref">1</sup></p>
+        <p>Мы — <b class="accent-word">цифровая студия полного цикла</b>: проектируем, оформляем и запускаем <b class="accent-word">сайты и визуальные системы</b> для бизнеса. Мы делаем так, чтобы увидев продукт, Вам захотелось <u>кричать от радости.</u><sup class="footnote-ref">1</sup></p>
         <details class="book-footnote" id="footnote-goida">
           <summary><span>1</span> Нажми плюсик</summary>
           <p>Го́йда (др. рус. междометие) — восклицание радости, искреннего одобрения.</p>
@@ -66,8 +68,8 @@
       <div class="about-facts reveal">
         <article class="about-fact stack-card">
           <div class="icon-slot" aria-hidden="true"><img src="img/icons/about-web.svg" alt="" decoding="async"></div>
-          <b>ТРИ НАПРАВЛЕНИЯ</b>
-          <span>Сайты, айдентика и SMM собраны в одной студии — от стратегии до запуска и регулярной работы.<br><br>
+          <b>ДВА ОСНОВНЫХ НАПРАВЛЕНИЯ</b>
+          <span>Сайты и айдентика собраны в одной студии — от стратегии до запуска и развития.<br><br>
              Мы можем разработать айдентику, запустить сайт и сопровождать его - всё зависит от Вас!</span>
         </article>
         <article class="about-fact stack-card">
@@ -106,103 +108,58 @@
       </div>
       <span class="arrow" aria-hidden="true">→</span>
     </a>
-    <a href="services/smm.html" class="service-row" style="--service-image:url('img/what-we-do/smm-hover.jpg')">
-      <span class="service-hover-photo" aria-hidden="true"></span><span class="eyebrow-num">03</span>
-      <div class="service-main">
-        <h3>SMM</h3>
-        <p>Стратегия, контент и ведение соцсетей — чтобы бренд регулярно был на виду и звучал цельно.</p>
-      </div>
-      <span class="arrow" aria-hidden="true">→</span>
-    </a>
+
   </section>
 
-  <!-- WEB FOCUS -->
-  <section>
-    <div class="focus reveal">
-      <span class="eyebrow-num">Главное направление · сайты</span>
-      <h2 class="focus-business-title">Сайт должен быть эстетичным и практичным</h2>
-      <p class="lede focus-intro" style="color:#5a5a54; margin-top:1rem;">Собираем структуру, визуальный язык и сценарии
-        пользователя в одну систему. Наведите на этап — карточка подскажет, что именно мы делаем и зачем.</p>
-      <div class="focus-stage-visual" aria-hidden="true"><img class="focus-stage-visual-img" src="img/icons/web-research.svg" alt=""></div><div class="focus-steps interactive">
-        <div class="focus-step interactive is-active" tabindex="0" data-focus-title="Исследование"
-          data-focus-copy="Задача бизнеса, аудитория, конкуренты и точки роста — до любого визуального решения."
-          data-icon="img/icons/web-research.svg">
-          <div class="step-icon"><img src="img/icons/web-research.svg" alt="" decoding="async"></div>
-          <b>Исследование</b><span>Понимаем, что должен делать сайт.</span>
-        </div>
-        <div class="focus-step interactive" tabindex="0" data-focus-title="UX / структура"
-          data-focus-copy="Выстраиваем понятный путь пользователя: от первого экрана до действия, которое важно бизнесу."
-          data-icon="img/icons/web-ux.svg">
-          <div class="step-icon"><img src="img/icons/web-ux.svg" alt="" decoding="async"></div>
-          <b>UX / структура</b><span>Убираем лишние шаги и трение.</span>
-        </div>
-        <div class="focus-step interactive" tabindex="0" data-focus-title="UI / адаптив"
-          data-focus-copy="Делаем визуальную систему, которая одинаково уверенно работает на широком экране, планшете и телефоне."
-          data-icon="img/icons/web-ui.svg">
-          <div class="step-icon"><img src="img/icons/web-ui.svg" alt="" decoding="async"></div>
-          <b>UI / адаптив</b><span>Собираем экран под любое устройство.</span>
-        </div>
-        <div class="focus-step interactive" tabindex="0" data-focus-title="Разработка / запуск"
-          data-focus-copy="Вёрстаем, подключаем анимации, тестируем ключевые сценарии и выводим проект в работу."
-          data-icon="img/icons/web-code.svg">
-          <div class="step-icon"><img src="img/icons/web-code.svg" alt="" decoding="async"></div>
-          <b>Разработка / запуск</b><span>Превращаем дизайн в работающий продукт.</span>
-        </div>
-      </div>
-      <div class="focus-detail" aria-live="polite">
-        <div><span class="detail-kicker">Активный этап</span><strong>Исследование</strong><span>Задача бизнеса,
-            аудитория, конкуренты и точки роста — до любого визуального решения.</span></div>
-        <span class="detail-arrow" aria-hidden="true">↗</span>
-      </div>
-      <div class="focus-tags">
-        <span>Лендинг от 10 000 ₽</span>
-        <span>Корпоративный сайт от 50 000 ₽</span>
-        <span>Интернет-магазин от 90 000 ₽</span>
-      </div>
-      <a href="services/web.html" class="btn btn-primary mt-lg">Обсудить сайт</a>
-    </div>
-  </section>
+  <!-- Портфолио сайтов подключается из components/site-portfolio.html -->
+  <div id="works" data-site-portfolio></div>
 
-  <!-- WORKS -->
-  <section id="works" class="wrap works-section">
-    <div class="section-head">
+  <!-- FEATURED DESIGN WORKS -->
+  <section class="wrap design-works-section" aria-labelledby="design-works-title">
+    <div class="section-head design-works-head">
       <div>
-        <h2 class="section-title">Работы</h2>
-        <p class="lede works-lede">Портфолио пополняется — подходим к каждому проекту с усердием.</p>
+        <span class="design-works-kicker">Графический дизайн / 01</span>
+        <h2 class="section-title" id="design-works-title">Избранные работы</h2>
+        <p class="lede">Иллюстрация, книжная графика и концепт-арт — несколько работ, в которых особенно хорошо виден наш визуальный подход.</p>
       </div>
-      <div class="works-guide" aria-hidden="true">
-        <span>Листайте проекты</span><span class="works-guide-line"></span><span>01 / 03</span>
-      </div>
+      <span class="design-works-index" aria-hidden="true">01—03</span>
     </div>
-    <div class="works-scroller" tabindex="0" aria-label="Портфолио. Прокрутите вправо, чтобы посмотреть остальные проекты.">
-      <a class="work-card ermak-card reveal" href="https://ermakwear.shop" target="_blank" rel="noopener noreferrer">
-        <img class="work-photo" src="img/works/ermak.jpg" alt="ЕРМАК — визуал интернет-магазина" loading="lazy" decoding="async">
-        <span class="num">01</span>
-        <div class="work-card-copy">
-          <h3>ЕРМАК</h3>
-          <p>Сайт-каталог бренда одежды с админ-панелью, карточками товаров и акцентом на характер бренда.</p>
-          <span class="case-link">ermakwear.shop ↗</span>
+    <div class="design-works-grid">
+      <a class="design-work-card" href="img/portfolio/design/digital/illustration-hare.webp" target="_blank" rel="noopener noreferrer" aria-label="Открыть работу: Иллюстрация с зайцем">
+        <div class="design-work-image">
+          <img src="img/portfolio/featured/illustration-hare.webp" alt="Живописная иллюстрация с белым зайцем среди осенних листьев" loading="lazy" decoding="async">
+          <span class="design-work-number">01</span>
+        </div>
+        <div class="design-work-copy">
+          <div><span class="design-work-type">Иллюстрация</span><h3>Осенний сюжет</h3></div>
+          <span class="design-work-arrow" aria-hidden="true">↗</span>
         </div>
       </a>
-      <article class="work-card placeholder reveal">
-        <img class="work-photo" src="img/works/project-02.jpg" alt="Фото второго проекта" loading="lazy" decoding="async">
-        <span class="num">02</span>
-        <div class="work-card-copy">
-          <h3>В процессе...</h3>
-          <p>Мы продолжаем заполнять портфолио нашими проектами, скоро тут появится больше.</p>
+      <a class="design-work-card" href="img/portfolio/design/print/book-illustrations.webp" target="_blank" rel="noopener noreferrer" aria-label="Открыть работу: Книжные иллюстрации">
+        <div class="design-work-image">
+          <img src="img/portfolio/featured/book-illustrations.webp" alt="Разворот художественной книги с детальными фантазийными иллюстрациями" loading="lazy" decoding="async">
+          <span class="design-work-number">02</span>
         </div>
-      </article>
-      <article class="work-card placeholder reveal">
-        <img class="work-photo" src="img/works/project-03.jpg" alt="Фото третьего проекта" loading="lazy" decoding="async">
-        <span class="num">03</span>
-        <div class="work-card-copy">
-          <h3>Ваш проект</h3>
-          <p>Почему бы нет? Мы будем рады поработать с Вами!</p>
+        <div class="design-work-copy">
+          <div><span class="design-work-type">Книжная графика</span><h3>Иллюстрации к книге</h3></div>
+          <span class="design-work-arrow" aria-hidden="true">↗</span>
         </div>
-      </article>
-    </div>
-    <div class="works-mobile-hint">
-      <span>Свайпните влево</span><span class="works-mobile-arrow">→</span>
+      </a>
+      <a class="design-work-card" href="img/portfolio/design/digital/character-sheet.webp" target="_blank" rel="noopener noreferrer" aria-label="Открыть работу: Концепт персонажей">
+        <div class="design-work-image">
+          <img src="img/portfolio/featured/character-sheet.webp" alt="Концепт-лист фантазийных персонажей и вариантов костюмов" loading="lazy" decoding="async">
+          <span class="design-work-number">03</span>
+        </div>
+        <div class="design-work-copy">
+          <div><span class="design-work-type">Концепт-арт</span><h3>Персонажи и костюмы</h3></div>
+          <span class="design-work-arrow" aria-hidden="true">↗</span>
+        </div>
+      </a>
+      <a class="design-more-card" href="services/branding.html#design-gallery">
+        <span class="design-more-index">Портфолио / продолжение</span>
+        <span class="design-more-title">Смотреть больше</span>
+        <span class="design-more-arrow" aria-hidden="true">↗</span>
+      </a>
     </div>
   </section>
 
@@ -216,42 +173,42 @@
       <div class="why-chain" role="list">
         <button class="why-node is-active" type="button" role="listitem" data-why-title="Смотрим на задачу бизнеса"
           data-why-copy="Начинаем не с макета, а с контекста: цели, аудитория, конкуренты и сценарий, который должен привести к результату.">
-          <span class="why-node-icon" aria-hidden="true"><img src="img/why-goyda/icon.png" alt="" decoding="async"></span>
+          <span class="why-node-icon" aria-hidden="true"><img src="img/icons/icon.png" data-theme-dark-src="img/icons/icon.png" data-theme-light-src="img/icons/icon2.png" alt="" decoding="async"></span>
           <span class="node-num">01</span>
           <h4>Смотрим на задачу бизнеса</h4>
           <p>Сначала смысл, потом форма.</p>
         </button>
         <button class="why-node" type="button" role="listitem" data-why-title="Держим UX в центре"
           data-why-copy="Каждый экран проектируется как часть пути пользователя — с понятной логикой, приоритетами и одним главным действием.">
-          <span class="why-node-icon" aria-hidden="true"><img src="img/why-goyda/icon.png" alt="" decoding="async"></span>
+          <span class="why-node-icon" aria-hidden="true"><img src="img/icons/icon.png" data-theme-dark-src="img/icons/icon.png" data-theme-light-src="img/icons/icon2.png" alt="" decoding="async"></span>
           <span class="node-num">02</span>
           <h4>Держим UX в центре</h4>
           <p>Логика важнее декоративности.</p>
         </button>
         <button class="why-node" type="button" role="listitem" data-why-title="Дизайн и разработка рядом"
           data-why-copy="Внутри одной команды не приходится объяснять решение заново между дизайнером и разработчиком — мы смотрим на продукт целиком.">
-          <span class="why-node-icon" aria-hidden="true"><img src="img/why-goyda/icon.png" alt="" decoding="async"></span>
+          <span class="why-node-icon" aria-hidden="true"><img src="img/icons/icon.png" data-theme-dark-src="img/icons/icon.png" data-theme-light-src="img/icons/icon2.png" alt="" decoding="async"></span>
           <span class="node-num">03</span>
           <h4>Дизайн и разработка рядом</h4>
           <p>Меньше потерь на передаче.</p>
         </button>
         <button class="why-node" type="button" role="listitem" data-why-title="Вы напрямую с командой"
           data-why-copy="Обсуждаете проект с теми, кто его делает. Быстрее принимаем решения и не прячемся за менеджерским слоем.">
-          <span class="why-node-icon" aria-hidden="true"><img src="img/why-goyda/icon.png" alt="" decoding="async"></span>
+          <span class="why-node-icon" aria-hidden="true"><img src="img/icons/icon.png" data-theme-dark-src="img/icons/icon.png" data-theme-light-src="img/icons/icon2.png" alt="" decoding="async"></span>
           <span class="node-num">04</span>
           <h4>Вы напрямую с командой</h4>
           <p>Без лишних посредников.</p>
         </button>
         <button class="why-node" type="button" role="listitem" data-why-title="Собираем систему, а не шаблон"
           data-why-copy="Типографика, композиция, интерактив и адаптив работают как единая визуальная система, которую можно развивать дальше.">
-          <span class="why-node-icon" aria-hidden="true"><img src="img/why-goyda/icon.png" alt="" decoding="async"></span>
+          <span class="why-node-icon" aria-hidden="true"><img src="img/icons/icon.png" data-theme-dark-src="img/icons/icon.png" data-theme-light-src="img/icons/icon2.png" alt="" decoding="async"></span>
           <span class="node-num">05</span>
           <h4>Собираем систему, а не шаблон</h4>
           <p>Можно масштабировать и развивать.</p>
         </button>
         <button class="why-node" type="button" role="listitem" data-why-title="Остаёмся после запуска"
           data-why-copy="Запуск — не точка. Остаёмся на связи для правок, доработок и дальнейшего развития продукта.">
-          <span class="why-node-icon" aria-hidden="true"><img src="img/why-goyda/icon.png" alt="" decoding="async"></span>
+          <span class="why-node-icon" aria-hidden="true"><img src="img/icons/icon.png" data-theme-dark-src="img/icons/icon.png" data-theme-light-src="img/icons/icon2.png" alt="" decoding="async"></span>
           <span class="node-num">06</span>
           <h4>Остаёмся после запуска</h4>
           <p>Поддержка и развитие без обрыва связи.</p>
@@ -290,7 +247,7 @@
 
   <!-- CONTACT -->
   <section id="contact" class="wrap contact-section">
-    <div class="contact-card">
+    <div class="contact-card contact-card-direct">
       <div class="contact-visual">
         <div class="contact-visual-label">digital / 02</div>
         <img src="img/contact.jpg" alt="Фото студии Гойда" class="contact-photo" loading="lazy" decoding="async">
@@ -300,28 +257,31 @@
           <strong>↗</strong>
         </div>
       </div>
-
       <div class="contact-copy">
-        <span class="eyebrow-num">Контакты · 02 канала</span>
+        <span class="eyebrow-num">Контакты · Обсудим проект</span>
         <h2>Есть идея?<br><em>Гойда!</em></h2>
-        <p class="lede">Расскажите, что хотите сделать. Мы быстро выйдем на связь и уже там обсудим задачу, сроки и формат работы.</p>
+        <p class="lede">Напишите нам напрямую — расскажите о задумке, а мы поможем понять, с чего начать.</p>
 
-        <div class="contact-links" aria-label="Способы связи">
+        <div class="contact-direct-phone">
+          <span class="contact-direct-kicker">Телефон студии</span>
+          <button type="button" class="contact-phone-copy" data-copy-phone aria-describedby="studio-phone-status" aria-label="Скопировать номер телефона +79898022026">
+            <strong data-phone-display>+79898022026</strong><span aria-hidden="true">⧉</span>
+          </button>
+          <p class="studio-phone-status" id="studio-phone-status" aria-live="polite">Нажмите на номер, чтобы скопировать его.</p>
+        </div>
+
+        <span class="contact-direct-kicker contact-social-kicker">Мы в соцсетях</span>
+        <div class="contact-links" aria-label="Социальные сети студии">
           <a class="contact-link contact-link-vk" href="https://vk.ru/id778286399" target="_blank" rel="noopener noreferrer">
             <span class="contact-link-icon">VK</span>
             <span class="contact-link-text"><b>ВКонтакте</b><small>@id778286399</small></span>
-            <span class="contact-link-arrow">↗</span>
+            <span class="contact-link-arrow" aria-hidden="true">↗</span>
           </a>
           <a class="contact-link contact-link-tg" href="https://t.me/Vlad3330000" target="_blank" rel="noopener noreferrer">
             <span class="contact-link-icon">TG</span>
             <span class="contact-link-text"><b>Telegram</b><small>@Vlad3330000</small></span>
-            <span class="contact-link-arrow">↗</span>
+            <span class="contact-link-arrow" aria-hidden="true">↗</span>
           </a>
-        </div>
-
-        <div class="contact-note">
-          <span class="contact-pulse"></span>
-          <span>Предпочитаем живой разговор — без длинных брифов и бесконечных полей.</span>
         </div>
       </div>
     </div>
@@ -329,8 +289,9 @@
 
   <div data-site-footer></div>
 
-  <script src="components.js"></script>
-  <script src="script.js"></script>
+  <script src="components.js?v=20261019-theme-light"></script>
+  <script src="script.js?v=20261019-theme-light"></script>
+  <script src="contact-form.js"></script>
 </body>
 
 </html>
